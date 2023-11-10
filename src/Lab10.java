@@ -68,9 +68,6 @@ public class Lab10 extends JFrame {
 		
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(contentPane, popupMenu);
-		
-		
-		
 		textField = new JTextField();
 		popupMenu.add(textField);
 		textField.setColumns(10);
@@ -87,11 +84,6 @@ public class Lab10 extends JFrame {
 		tokenBox = new JComboBox();
 		tokenBox.setMaximumRowCount(100);
 		RootBox = new JComboBox();
-		
-		
-		
-		
-		
 		JButton toknize_Btn = new JButton("Assign Root");
 		toknize_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
