@@ -57,7 +57,14 @@ public class Lab10 extends JFrame {
 			}
 		});
 	}
-	
+
+
+	public void addInTable() {
+		Object a = tokenBox.getSelectedItem();
+		Object b = RootBox.getSelectedItem();
+		DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+		model.addRow(new Object[]{a, b});
+	}
 	public Lab10() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 360);
@@ -95,7 +102,7 @@ public class Lab10 extends JFrame {
 		JButton toknize_Btn = new JButton("Assign Root");
 		toknize_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				addInTable();
 			}
 		});
 		toknize_Btn.setFont(new Font("Tahoma", Font.BOLD, 13));
