@@ -1,3 +1,5 @@
+
+
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -7,13 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.util.Iterator;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -27,9 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.UIManager;
 import javax.swing.JSeparator;
 
@@ -44,6 +37,9 @@ public class Lab10 extends JFrame {
 	
 	JComboBox RootBox;
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -64,6 +60,41 @@ public class Lab10 extends JFrame {
 		Object b = RootBox.getSelectedItem();
 		DefaultTableModel model = (DefaultTableModel) table_1.getModel();
 		model.addRow(new Object[]{a, b});
+=======
+	/**
+	 * Create the frame.
+	 */
+	
+	
+	public void getDataFromTxt() {
+		try {
+			String arr[] = textField_1.getText().split(" ");
+			for (int i = 0; i< arr.length;i++) {
+				tokenBox.addItem(arr[i]);
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void getRootsTxt() {
+		try {
+			try {
+			    BufferedReader br = new BufferedReader(new FileReader("Roots.txt"));
+			    String data;
+			    while ((data = br.readLine()) != null) {
+			    	String data_1[] = data.split(" ");
+			    	for(int i=0;i<data_1.length;i++) {
+			        RootBox.addItem(data_1[i]);
+			    	}
+			    }
+			    br.close();  // It's a good practice to close the BufferedReader
+			} catch (Exception e) {
+			    System.out.println(e.getMessage());
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	public Lab10() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,9 +106,6 @@ public class Lab10 extends JFrame {
 		
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(contentPane, popupMenu);
-		
-		
-		
 		textField = new JTextField();
 		popupMenu.add(textField);
 		textField.setColumns(10);
@@ -94,11 +122,6 @@ public class Lab10 extends JFrame {
 		tokenBox = new JComboBox();
 		tokenBox.setMaximumRowCount(100);
 		RootBox = new JComboBox();
-		
-		
-		
-		
-		
 		JButton toknize_Btn = new JButton("Assign Root");
 		toknize_Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,7 +133,8 @@ public class Lab10 extends JFrame {
 		JButton btnNewButton = new JButton("Tokenize");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				getRootsTxt();
+				getDataFromTxt();
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
